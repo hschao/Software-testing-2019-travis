@@ -108,9 +108,11 @@ public class TestMultiplication {
 
 		// Here should new Factorization object with Mockito stub
 		// Here should ask stub object to act whatever we want
-
-		Multiplication multiplication = new Multiplication();
-		int actualANS = multiplication.multiplicationWithFactorizationAbsolute(factorizationStub, expectedANS);
+                Factorization factorizationStub = mock(Factorization.class);
+                when(factorizationStub.factorization(expectedANS)).thenReturn(array);
+                when(factorizationStub.factorizationRoot(anyInt(), anyBoolean())).thenReturn(-1);
+                Multiplication multiplication = new Multiplication();
+                int actualANS = multiplication.multiplicationWithFactorizationAbsolute(factorizationStub, expectedANS);
 
 		assertEquals(expectedANS, actualANS);
 	}
